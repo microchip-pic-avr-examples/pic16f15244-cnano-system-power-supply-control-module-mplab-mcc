@@ -1,45 +1,89 @@
-<!-- Please do not change this logo with link -->
+<!-- Please do not change this html logo with link -->
+<a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-[![MCHP](images/microchip.png)](https://www.microchip.com)
+# Supply Control Module Emulation using PIC16F15244 Microcontroller
 
-# Update the title for pic16f15244-cnano-system-power-supply-control-module-mplab-mcc here
+## Introduction
 
-<!-- This is where the introduction to the example goes, including mentioning the peripherals used -->
+Modern process computers, commonly based on high-end 32- or 64-bit microprocessors, provide developers with significant options in terms of operating system use. However, their high processing power is paid for with equally high-power demand, which can be a problem in battery-operated real-time applications. Using a simple low power and cost-effective 8-bit PIC microcontroller as the secondary device provides a convenient and cost-effective means of controlling the system power state. This discussion will consider the use of PIC16F microcontrollers in that role.
+
+This GitHub code example demonstrates the use of the PIC16F15244 microcontroller in such applications for system power supply control. As a case study, for the demonstration, a reference application based on a Raspberry Pi© Single Board Computer (SBC) is used as the process computer (host) and a PIC16F15244 Curiosity Nano Evaluation Kit as a power supply control module (client). Additionally, the SBC functionality is also emulated with another PIC16F15244 microcontroller, as one of the use cases discussed in the code example.
+
+For complete details of the application implementation, refer application note : Using PIC16F15244 Microcontrollers for System Power Supply Control.
 
 ## Related Documentation
 
-<!-- Any information about an application note or tech brief can be linked here. Use unbreakable links!
-     In addition a link to the device family landing page and relevant peripheral pages as well:
-     - [AN3381 - Brushless DC Fan Speed Control Using Temperature Input and Tachometer Feedback](https://microchip.com/00003381/)
-     - [PIC18F-Q10 Family Product Page](https://www.microchip.com/design-centers/8-bit/pic-mcus/device-selection/pic18f-q10-product-family) -->
+- [Application note : Using PIC16F15244 Microcontrollers for System Power Supply Control]
+- [GitHub Microchip PIC Examples : Supply Control Module using PIC16F15245 Microcontroller]
+- [GitHub Microchip PIC Examples : Process Computer Module using PIC16F15244 Microcontroller]
+- [PIC16F15244 Product Family Page](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/pic-mcus/pic16f15244)
+- [PIC16F15244 Code Examples on GitHub](https://github.com/microchip-pic-avr-examples?q=pic16f15244&type=&language=&sort=)
+- [PIC16F15244 MCU Family Video](https://www.youtube.com/watch?v=nHLv3Th-o-s)
+- [PIC16F15244 MCU Product Page](https://www.microchip.com/en-us/product/PIC16F15244)
+
+
+## Demo Description
+
+For the demonstration of the supply control module application, two PIC16F15244 Curiosity Nano Evaluation Kits are used: One acts as host and the other as the client. The host is referred as process computer emulates the Raspberry Pi based SBC functionality. The client is referred as power supply control module, turns the regulator ON or OFF, this is emulated by the on-board LED. 
+
+The process computer sends out a sleep command to the power supply control module over an I2C bus to shut down the system power. This sleep command contains the duration for which the process computer is to be put in Low-power mode. For simplicity, the on-board switch on the process computer (i.e., the PIC16F15244 Curiosity Nano Evaluation kit emulating the process computer) is used to trigger the sleep command.
+
+After receiving the sleep command, the supply control module waits for 30 seconds before turning OFF the regulator. This period provides sufficient time for the process computer to perform the shutdown housekeeping tasks that are required for Linux® OS-like operating systems (such as invoking the shutdown procedure). The supply control module device disables the emulated voltage regulator, then enters Sleep mode. The supply control module will automatically turn ON the voltage regulator after the power-down period expires or an external trigger is provided. 
+
+
+<p align="center">
+  <img width=auto height=auto src="images/demo-block-diagram.jpg">
+</p>
+
 
 ## Software Used
 
-<!-- All software used in this example must be listed here. Use unbreakable links!
-     - MPLAB® X IDE 5.30 or newer [(microchip.com/mplab/mplab-x-ide)](http://www.microchip.com/mplab/mplab-x-ide)
-     - MPLAB® XC8 2.10 or a newer compiler [(microchip.com/mplab/compilers)](http://www.microchip.com/mplab/compilers)
-     - MPLAB® Code Configurator (MCC) 3.95.0 or newer [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - MPLAB® Code Configurator (MCC) Device Libraries PIC10 / PIC12 / PIC16 / PIC18 MCUs [(microchip.com/mplab/mplab-code-configurator)](https://www.microchip.com/mplab/mplab-code-configurator)
-     - Microchip PIC18F-Q Series Device Support (1.4.109) or newer [(packs.download.microchip.com/)](https://packs.download.microchip.com/) -->
+- [MPLAB® X IDE 5.50 or newer](http://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® XC8 2.32 or a newer compiler](http://www.microchip.com/mplab/compilers)
+- [MPLAB® Code Configurator (MCC) v5.0.3 or newer](https://www.microchip.com/mplab/mplab-code-configurator)
+- [Master Synchronous Serial Port(MSSP) MCC Melody driver v6.1.0]
+- [Timer0 (TMR0) MCC Melody driver v4.0.8]
 
-- MPLAB® X IDE 6.00.0 or newer [(MPLAB® X IDE 6.00)](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-x-ide?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_MPAE_Examples&utm_content=pic16f15244-cnano-system-power-supply-control-module-mplab-mcc-github)
-- MPLAB® XC8 2.36.0 or newer compiler [(MPLAB® XC8 2.36)](https://www.microchip.com/en-us/development-tools-tools-and-software/mplab-xc-compilers?utm_source=GitHub&utm_medium=TextLink&utm_campaign=MCU8_MMTCha_MPAE_Examples&utm_content=pic16f15244-cnano-system-power-supply-control-module-mplab-mcc-github)
 
 ## Hardware Used
 
-<!-- All hardware used in this example must be listed here. Use unbreakable links!
-     - PIC18F47Q10 Curiosity Nano [(DM182029)](https://www.microchip.com/Developmenttools/ProductDetails/DM182029)
-     - Curiosity Nano Base for Click boards™ [(AC164162)](https://www.microchip.com/Developmenttools/ProductDetails/AC164162)
-     - POT Click board™ [(MIKROE-3402)](https://www.mikroe.com/pot-click) -->
+- PIC16F15244 Curiosity Nano Evaluation Kit [EV09Z19A](https://www.microchip.com/en-us/development-tool/EV09Z19A)
 
-## Setup
+## Supply Control Module Implementation:
 
-<!-- Explain how to connect hardware and set up software. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+The Supply Control Module application firmware starts with the initialization of the system and required peripherals of the PIC16F15244 microcontroller. After initialization, it enters Power-Down mode. The microcontroller remains in Power-Down mode until it receives an I2C command from the process computer. To an I2C interrupt, the microcontroller wakes up from Sleep and verify whether the received I2C command is valid.
+On reception of a valid Sleep command, the control module waits for a period of 30 seconds using a timer peripheral before turning OFF the regulator. Once the 30 second wait period is over, the application firmware disables the I2C peripheral and turns OFF the LED (voltage regulator), then enters Low Power mode by entering sleep. This wait period can be configurable by the user per application requirement. The supply control device wakes up periodically from Sleep mode using the Watchdog Timer (WDT). After the total power-down duration is complete or if a valid switch press event is detected, the supply control module turns ON the LED.
 
-## Operation
+## Process Computer Module Implementation:
 
-<!-- Explain how to operate the example. Depending on complexity, step-by-step instructions and/or tables and/or images can be used -->
+Refer code example “ Process Computer using PIC16F15244 Microcontroller” for more details about the process computer module implementation. 
 
-## Summary
+## Demonstration Setup:
 
-<!-- Summarize what the example has shown -->
+<p align="center">
+  <img width=auto height=auto src="images/cnano-demo-setup.jpg">
+</p>
+
+## Demo Operation:
+
+For the demonstration, two PIC16F15244 Curiosity Nano Evaluation kits are used: one board as supply control module and other board as process computer. Setup the hardware as shown in demo setup section. Flash the supply control module firmware and process computer module firmware to the respective curiosity nano evaluation kits. The following points explains about functionality of the application.
+1.	After flashing the firmware, supply control module enters power down mode and continues to remain in power down mode until it receives the I2C command from process computer module.
+2.	Press onboard switch of the process computer (PIC16F15244 curiosity nano evaluation kit), which transmits the I2C command to the supply control module. LED blink is used as an indication for switch press event detection and for I2C command transmission . 
+3.	Supply control module wakes up from the sleep as soon as it receives I2C command from the process computer which is indicated by LED blink.
+4.	After reception of valid sleep command, supply control module waits for 30 secs before entering sleep mode. 
+5.	Once the waiting period is over, then supply control module enters sleep mode by turning OFF the LED. It remains in the sleep mode for the sleep duration specified by the process computer.
+6.	After the sleep duration is complete or press onboard switch, supply control module wakes up from the sleep and LED blink is used as an indication.
+
+## System Power Supply Control for the Raspberry Pi Application:
+
+This section demonstrates a use case of system power supply control for use with a Raspberry Pi-based reference application. The application functionality is similar to the implementation based on the PIC16F15244 Curiosity Nano kit. The process computer implementation is switched to the Raspberry Pi board and supply control module implementation is moved to the dedicated hardware setup, a PIC16F15245 control board.
+
+Refer code example “ Supply Control Module using PIC16F15245 Microcontroller” for more details about the implementation. 
+
+## Conclusion:
+
+This code example presents developers with a brief overview of how an 8-bit microcontroller can be used to improve the power consumption of a process computer, such as an SBC.
+The proof-of-concept application presented here can be extended in various ways. For example,
+oscillator inaccuracies and start-up delays can be compensated for by monitoring the actual sleep time by the process computer itself. That way, the process computer can change the amount of time the system is expected to sleep. In addition, various real-time tasks can also be offloaded to the 8-bit PIC microcontroller.
+
+ 
