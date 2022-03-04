@@ -38,9 +38,9 @@ After receiving the sleep command, the supply control module waits for 30 second
 
 ## Software Used
 
-- [MPLAB® X IDE 5.50 or newer](http://www.microchip.com/mplab/mplab-x-ide)
-- [MPLAB® XC8 2.32 or a newer compiler](http://www.microchip.com/mplab/compilers)
-- [MPLAB® Code Configurator (MCC) v5.0.3 or newer](https://www.microchip.com/mplab/mplab-code-configurator)
+- [MPLAB® X IDE 6.00.0 or newer](http://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® XC8 2.36.0 or a newer compiler](http://www.microchip.com/mplab/compilers)
+- [MPLAB® Code Configurator (MCC) v5.1.1 or newer](https://www.microchip.com/mplab/mplab-code-configurator)
 - [Master Synchronous Serial Port(MSSP) MCC Melody driver v6.1.0]
 - [Timer0 (TMR0) MCC Melody driver v4.0.8]
 
