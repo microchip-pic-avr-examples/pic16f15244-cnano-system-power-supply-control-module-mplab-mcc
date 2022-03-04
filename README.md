@@ -1,7 +1,7 @@
 <!-- Please do not change this html logo with link -->
 <a href="https://www.microchip.com" rel="nofollow"><img src="images/microchip.png" alt="MCHP" width="300"/></a>
 
-# Supply Control Module Emulation using PIC16F15244 Microcontroller
+# System Power Supply Control Module Emulation using PIC16F15244 Microcontroller
 
 ## Introduction
 
