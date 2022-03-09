@@ -13,7 +13,7 @@ For complete details of the application implementation, refer application note :
 
 ## Related Documentation
 
-- [Application note : Using PIC16F15244 Microcontrollers for System Power Supply Control]
+- [Application note : Using PIC16F15244 Microcontrollers for System Power Supply Control]( https://www.microchip.com/DS00004121)
 - [GitHub Microchip PIC Examples : Supply Control Module using PIC16F15245 Microcontroller]
 - [GitHub Microchip PIC Examples : Process Computer Module using PIC16F15244 Microcontroller]
 - [PIC16F15244 Product Family Page](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/pic-mcus/pic16f15244)
