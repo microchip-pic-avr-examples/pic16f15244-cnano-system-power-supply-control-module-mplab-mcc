@@ -9,13 +9,13 @@ Modern process computers, commonly based on high-end 32- or 64-bit microprocesso
 
 This GitHub code example demonstrates the use of the PIC16F15244 microcontroller in such applications for system power supply control. As a case study, for the demonstration, a reference application based on a Raspberry Pi© Single Board Computer (SBC) is used as the process computer (host) and a PIC16F15244 Curiosity Nano Evaluation Kit as a power supply control module (client). Additionally, the SBC functionality is also emulated with another PIC16F15244 microcontroller, as one of the use cases discussed in the code example.
 
-For complete details of the application implementation, refer application note : Using PIC16F15244 Microcontrollers for System Power Supply Control.
+For complete details of the application implementation, refer application note : [Using PIC16F15244 Microcontrollers for System Power Supply Control]( https://www.microchip.com/DS00004121).
 
 ## Related Documentation
 
 - [Application note : Using PIC16F15244 Microcontrollers for System Power Supply Control]( https://www.microchip.com/DS00004121)
-- [GitHub Microchip PIC Examples : Supply Control Module using PIC16F15245 Microcontroller]
-- [GitHub Microchip PIC Examples : Process Computer Module using PIC16F15244 Microcontroller]
+- [GitHub Microchip PIC Examples : System Power Supply Control Module using PIC16F15245 Microcontroller](https://github.com/microchip-pic-avr-examples/pic16f15245-system-power-supply-control-module-mplab-mcc)
+- [GitHub Microchip PIC Examples : Process Computer Emulation using PIC16F15244 Microcontroller](https://github.com/microchip-pic-avr-examples/pic16f15244-cnano-system-power-supply-control-sbc-mplab-mcc)
 - [PIC16F15244 Product Family Page](https://www.microchip.com/en-us/products/microcontrollers-and-microprocessors/8-bit-mcus/pic-mcus/pic16f15244)
 - [PIC16F15244 Code Examples on GitHub](https://github.com/microchip-pic-avr-examples?q=pic16f15244&type=&language=&sort=)
 - [PIC16F15244 MCU Family Video](https://www.youtube.com/watch?v=nHLv3Th-o-s)
@@ -38,13 +38,13 @@ After receiving the sleep command, the supply control module waits for 30 second
 
 ## Software Used
 
-- [MPLAB® X IDE 6.00.0 or newer](http://www.microchip.com/mplab/mplab-x-ide)
+- [MPLAB® X IDE 6.0.0 or newer](http://www.microchip.com/mplab/mplab-x-ide)
 - [MPLAB® XC8 2.36.0 or a newer compiler](http://www.microchip.com/mplab/compilers)
 - [MPLAB® Code Configurator (MCC) 5.1.1 or newer](https://www.microchip.com/mplab/mplab-code-configurator)
 - MCC Melody Core 2.1.9
 - I2C_Client MCC Melody driver 2.0.1
 - UART MCC Melody driver 1.6.0
-- Timer0 (TMR0) MCC Melody driver v4.0.8
+- Timer0 (TMR0) MCC Melody driver 4.0.8
 
 
 ## Hardware Used
@@ -58,7 +58,7 @@ On reception of a valid Sleep command, the control module waits for a period of 
 
 ## Process Computer Module Implementation:
 
-Refer code example “ Process Computer using PIC16F15244 Microcontroller” for more details about the process computer module implementation. 
+Refer code example [Process Computer Emulation using PIC16F15244 Microcontroller](https://github.com/microchip-pic-avr-examples/pic16f15244-cnano-system-power-supply-control-sbc-mplab-mcc) for more details about the process computer module implementation. 
 
 ## Demonstration Setup:
 
@@ -80,7 +80,7 @@ For the demonstration, two PIC16F15244 Curiosity Nano Evaluation kits are used: 
 
 This section demonstrates a use case of system power supply control for use with a Raspberry Pi-based reference application. The application functionality is similar to the implementation based on the PIC16F15244 Curiosity Nano kit. The process computer implementation is switched to the Raspberry Pi board and supply control module implementation is moved to the dedicated hardware setup, a PIC16F15245 control board.
 
-Refer code example “ Supply Control Module using PIC16F15245 Microcontroller” for more details about the implementation. 
+Refer code example [System Power Supply Control Module using PIC16F15245 Microcontroller](https://github.com/microchip-pic-avr-examples/pic16f15245-system-power-supply-control-module-mplab-mcc) for more details about the implementation. 
 
 ## Conclusion:
 
