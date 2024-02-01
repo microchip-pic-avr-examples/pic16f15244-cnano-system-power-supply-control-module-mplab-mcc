@@ -6,7 +6,7 @@
         "name": "com.microchip.mcu8.mplabx.project.pic16f15244-cnano-system-power-supply-control-module-mplab-mcc",
         "version": "1.0.1",
         "displayName": "System Power Supply Control Module Emulation using PIC16F15244 Microcontroller",
-        "projectName": "pic16f15244-supply-control-module-emulation-mplab-mcc",
+        "projectName": "pic16f15244-cnano-system-power-supply-control-module-mplab-mcc",
         "shortDescription": "This code example demonstrates emulation of a supply control module which controls power supply to a system through voltage regulator using the PIC microcontroller Compatible PIC16F152xx family of MCUs are PIC16F15214 PIC16F15223 PIC16F15254 PIC16F15276",
         "ide": {
             "name": "MPLAB X",
