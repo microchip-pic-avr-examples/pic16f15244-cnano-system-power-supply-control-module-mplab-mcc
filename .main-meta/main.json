@@ -10,7 +10,7 @@
         "shortDescription": "This code example demonstrates emulation of a supply control module which controls power supply to a system through voltage regulator using the PIC microcontroller Compatible PIC16F152xx family of MCUs are PIC16F15214 PIC16F15223 PIC16F15254 PIC16F15276",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=6.15.0"
+            "semverRange": ">=6.20.0"
         },
         "compiler": [
             {
