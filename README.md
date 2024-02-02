@@ -5,11 +5,11 @@
 
 ## Introduction
 
-Modern process computers, commonly based on high-end 32- or 64-bit microprocessors, provide developers with significant options in terms of operating system use. However, their high processing power is paid for with equally high-power demand, which can be a problem in battery-operated real-time applications. Using a simple low-power and cost-effective 8-bit PIC® microcontroller as the secondary device provides a convenient and cost-effective means of controlling the system power state. This discussion will consider the use of PIC16F microcontrollers in that role.
+Modern process computers, commonly based on high-end 32- or 64-bit microprocessors, provide developers with significant options in terms of operating system use. However, their high processing power is paid for with equally high-power demand, which can be a problem in battery-operated real-time applications. Using a simple low-power and cost-effective 8-bit PIC® microcontroller(MCU) as the secondary device provides a convenient and cost-effective means of controlling the system power state. This discussion will consider the use of PIC16F microcontrollers in that role.
 
-This code example demonstrates the use of the PIC16F15244 microcontroller in such applications for system power supply control. For the demonstration, a reference application based on a Raspberry Pi© Single Board Computer (SBC) is used as the process computer (host) and a PIC16F15244 Curiosity Nano Evaluation Kit as a power supply control module (client). Additionally, the SBC functionality is also emulated with another PIC16F15244 microcontroller, as one of the use cases discussed in the code example.
+This code example demonstrates the use of the PIC16F15244 microcontroller in system power supply control applications. For the demonstration, a reference application based on a Raspberry Pi© Single Board Computer (SBC) is used as the process computer (host) and a PIC16F15244 Curiosity Nano Evaluation Kit as a power supply control module (client). Additionally, the SBC functionality is also emulated with another PIC16F15244 microcontroller, as one of the use cases discussed in the code example.
 
-For complete details of the application implementation, refer application note : [Using PIC16F15244 Microcontrollers for System Power Supply Control]( https://www.microchip.com/DS00004121).
+For complete details of the application implementation, refer to the [Using PIC16F15244 Microcontrollers for System Power Supply Control]( https://www.microchip.com/DS00004121) application note.
 
 ## Related Documentation
 
@@ -24,11 +24,11 @@ For complete details of the application implementation, refer application note :
 
 ## Demo Description
 
-For the demonstration of the supply control module application, two PIC16F15244 Curiosity Nano Evaluation Kits are used: one acts as host and the other as the client. The host is represented by the process computer which emulates the Raspberry Pi based SBC functionality, whereas the power supply control module acts as client, turning the regulator ON or OFF. This is emulated by the on-board LED. 
+For the demonstration of the supply control module application, two PIC16F15244 Curiosity Nano Evaluation Kits are used: one acts as host and the other as client. The host is represented by the process computer which emulates the Raspberry Pi based SBC functionality, whereas the power supply control module acts as client, turning the regulator ON or OFF. This is emulated by the on-board LED. 
 
-The process computer sends out a SLEEP command to the power supply control module over an Inter-Integrated Circuit (I<sup>2</sup>C) bus to shut down the system power. This sleep command contains the duration for which the process computer is to be put in Low-power mode. For simplicity, the on-board switch on the process computer (i.e., the PIC16F15244 Curiosity Nano Evaluation kit emulating the process computer) is used to trigger the sleep command.
+The process computer sends out a `SLEEP()` command to the power supply control module over an Inter-Integrated Circuit (I<sup>2</sup>C) bus to shut down the system power. This sleep command contains the duration for which the process computer is to be put in Low-Power mode. For simplicity, the on-board switch on the process computer (i.e., the PIC16F15244 Curiosity Nano Evaluation kit emulating the process computer) is used to trigger the sleep command.
 
-After receiving the SLEEP command, the supply control module waits for 30 seconds before turning OFF the regulator. This period provides sufficient time for the process computer to perform the shutdown housekeeping tasks that are required for Linux® OS-like operating systems (such as invoking the shutdown procedure). The supply control module device disables the emulated voltage regulator, then enters Sleep mode. The supply control module will automatically turn ON the voltage regulator after the power-down period expires or an external trigger is provided. 
+After receiving the `SLEEP()` command, the supply control module waits for 30 seconds before turning OFF the regulator. This period provides sufficient time for the process computer to perform the shutdown housekeeping tasks that are required for Linux® OS-like operating systems (such as invoking the shutdown procedure). The supply control module device disables the emulated voltage regulator, then enters Sleep mode. The supply control module will automatically turn ON the voltage regulator after the power-down period expires or an external trigger is provided. 
 
 
 <p align="center">
@@ -69,11 +69,11 @@ Refer to the [Process Computer Emulation using PIC16F15244 Microcontroller](http
 
 ## Demo Operation
 
-For the demonstration, two PIC16F15244 Curiosity Nano Evaluation kits are used: one board as supply control module and the other as process computer. Setup the hardware as shown in demo setup section. Flash the supply control module firmware and process computer module firmware to the respective Curiosity Nano Evaluation Kits. The functionality of the application is detailed below.
+For the demonstration, two PIC16F15244 Curiosity Nano Evaluation kits are used: one board as supply control module and the other as process computer. Configure the hardware as shown in demo setup section. Flash the supply control module firmware and process computer module firmware to the respective Curiosity Nano Evaluation Kits. The functionality of the application is detailed below.
 1.	After flashing the firmware, the supply control module enters Power-Down mode and continues to remain in it until it receives the I<sup>2</sup>C command from the process computer module.
 2.	Press the on-board switch of the process computer (PIC16F15244 Curiosity Nano Evaluation Kit), which transmits the I<sup>2</sup>C command to the supply control module. The LED blink is used as an indication for the switch press event detection and I<sup>2</sup>C command transmission . 
-3.	Supply control module wakes up from the Sleep as soon as it receives the I<sup>2</sup>C command from the process computer, indicated by LED blink.
-4.	After receiving a valid SLEEP command, the supply control module waits 30s before entering Sleep mode. 
+3.	Supply control module wakes up from Sleep as soon as it receives the I<sup>2</sup>C command from the process computer, indicated by LED blink.
+4.	After receiving a valid `SLEEP()` command, the supply control module waits 30s before entering Sleep mode. 
 5.	Once the waiting period is over, the supply control module enters Sleep mode by turning OFF the LED. It remains in the Sleep mode for the sleep duration specified by the process computer.
 6.	After the sleep duration is complete or by pressing the on-board switch, the supply control module wakes up from Sleep, as indicated by the LED blink.
 
